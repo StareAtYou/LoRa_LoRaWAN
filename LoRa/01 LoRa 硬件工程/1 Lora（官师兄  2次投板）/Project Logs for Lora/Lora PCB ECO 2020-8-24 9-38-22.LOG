@@ -1,0 +1,49 @@
+Added Component: Designator=D2(贴片二极管)
+Added Component: Designator=R11(0603R)
+Added Pin To Net: NetName=+3.3V Pin=R11-2
+Added Pin To Net: NetName=LED Pin=D2-2
+Added Pin To Net: NetName=LED Pin=U3-12
+Added Net: Name=LED
+Added Pin To Net: NetName=NetD2_1 Pin=D2-1
+Added Pin To Net: NetName=NetD2_1 Pin=R11-1
+Added Net: Name=NetD2_1
+Added Member To Class: ClassName=LoRa Member=Component C1 Cap1
+Added Member To Class: ClassName=LoRa Member=Component C2 Cap2
+Added Member To Class: ClassName=LoRa Member=Component C3 Cap3
+Added Member To Class: ClassName=LoRa Member=Component C4 Cap4
+Added Member To Class: ClassName=LoRa Member=Component C5 Cap5
+Added Member To Class: ClassName=LoRa Member=Component C6 Cap6
+Added Member To Class: ClassName=LoRa Member=Component C7 Cap7
+Added Member To Class: ClassName=LoRa Member=Component C8 Cap8
+Added Member To Class: ClassName=LoRa Member=Component C9 Cap9
+Added Member To Class: ClassName=LoRa Member=Component C10 Cap10
+Added Member To Class: ClassName=LoRa Member=Component C11 Cap11
+Added Member To Class: ClassName=LoRa Member=Component C12 Cap12
+Added Member To Class: ClassName=LoRa Member=Component C13 Cap13
+Added Member To Class: ClassName=LoRa Member=Component D1 LED1
+Added Member To Class: ClassName=LoRa Member=Component D2 LED2
+Added Member To Class: ClassName=LoRa Member=Component J1 JTAG
+Added Member To Class: ClassName=LoRa Member=Component J2 Lora
+Added Member To Class: ClassName=LoRa Member=Component J3 串口1
+Added Member To Class: ClassName=LoRa Member=Component L1 Inductor1
+Added Member To Class: ClassName=LoRa Member=Component L2 Inductor2
+Added Member To Class: ClassName=LoRa Member=Component P1 Header 2
+Added Member To Class: ClassName=LoRa Member=Component P2 Header 2
+Added Member To Class: ClassName=LoRa Member=Component R1 Res1
+Added Member To Class: ClassName=LoRa Member=Component R2 Res2
+Added Member To Class: ClassName=LoRa Member=Component R3 Res3
+Added Member To Class: ClassName=LoRa Member=Component R4 Res4
+Added Member To Class: ClassName=LoRa Member=Component R5 Res5
+Added Member To Class: ClassName=LoRa Member=Component R6 Res6
+Added Member To Class: ClassName=LoRa Member=Component R7 Res7
+Added Member To Class: ClassName=LoRa Member=Component R8 Res8
+Added Member To Class: ClassName=LoRa Member=Component R9 Res9
+Added Member To Class: ClassName=LoRa Member=Component R10 Res10
+Added Member To Class: ClassName=LoRa Member=Component R11 Res11
+Added Member To Class: ClassName=LoRa Member=Component SW1 SW-1
+Added Member To Class: ClassName=LoRa Member=Component U1 TPS61230
+Added Member To Class: ClassName=LoRa Member=Component U2 TPS63000
+Added Member To Class: ClassName=LoRa Member=Component U3 STM32L151
+Added Member To Class: ClassName=LoRa Member=Component U4 E22-400T30S
+Added Member To Class: ClassName=LoRa Member=Component Y1 8MHz
+Added Room: Name=LoRa

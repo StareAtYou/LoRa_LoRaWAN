@@ -1,0 +1,15 @@
+..\output\key.o: ..\Driver\key\key.c
+..\output\key.o: ..\Driver\key\key.h
+..\output\key.o: ..\Driver\system\sys\sys.h
+..\output\key.o: ..\STM32L1xx_StdPeriph_Driver\inc\misc.h
+..\output\key.o: ..\main\stm32l1xx.h
+..\output\key.o: ..\System\core_cm3.h
+..\output\key.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdint.h
+..\output\key.o: ..\Driver\led\core_cmInstr.h
+..\output\key.o: ..\System\core_cmFunc.h
+..\output\key.o: ..\System\system_stm32l1xx.h
+..\output\key.o: ..\STM32L1xx_StdPeriph_Driver\inc\stm32l1xx_conf.h
+..\output\key.o: ..\main\general_type.h
+..\output\key.o: ..\STM32L1xx_StdPeriph_Driver\inc\stm32l1xx_gpio.h
+..\output\key.o: ..\STM32L1xx_StdPeriph_Driver\inc\stm32l1xx_rcc.h
+..\output\key.o: ..\Driver\system\delay\delay.h

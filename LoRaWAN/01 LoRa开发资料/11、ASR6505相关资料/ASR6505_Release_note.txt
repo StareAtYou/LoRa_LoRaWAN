@@ -1,0 +1,40 @@
+Customer_Support_System
+
+
+Hardware_Release_v1.0
+   ASR6505 Datasheet
+   ASR6505 GPIO_SPEC
+   ASR6505 Reference Design
+       Key Component Datasheet
+           Crystal_32.768KHz
+           Crystal_32MHz
+           RF Switch
+       Module Schematic
+           ASR6505 Schematic
+           ASR6505 硬件设计应用指南
+       Reference PCB
+           ASR6505 Layout
+           ASR6505_EVB_PCB封装库
+   ASR6505 Demo Board
+       Demo Board_Quick Start
+       Demo Board FW 烧录说明
+       Demo Board Serial Driver
+   ASR6505 Module_Test
+       ASR6505测试方法及步骤
+       ASR6505测试烧录文件
+       ASR6505_Test_Report_toCustomer
+
+
+Software_Release_v1.0
+       Software_Release_V10/doc/ASR6505/
+           ASR6505_参考板测试指南
+           ASR6505_芯片API使用手册
+           ASR6505_应用开发DEMO说明
+           ASR6505_应用开发环境搭建指南
+       Software_Release_V10/doc/STM8L152/
+       Software_Release_V10/doc/SX1262/
+    Software_Release_V10/SDK/
+
+
+ASR6505 Q&A  
+       ASR6505_Q&A_v1.0  

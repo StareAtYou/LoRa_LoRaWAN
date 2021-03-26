@@ -1,0 +1,21 @@
+Change Component Footprint: Designator=U4 Old Footprint=DIP14 New Footprint=DIP16
+Added Pin To Net: NetName=GND Pin=U4-15
+Added Pin To Net: NetName=DI2_IO Pin=U4-16
+Added Member To Class: ClassName=LoRa_Node Member=Component C4 Cap17
+Added Member To Class: ClassName=LoRa_Node Member=Component C5 Cap9
+Added Member To Class: ClassName=LoRa_Node Member=Component C8 Cap12
+Added Member To Class: ClassName=LoRa_Node Member=Component C13 
+Added Member To Class: ClassName=LoRa_Node Member=Component C16 Cap
+Added Member To Class: ClassName=LoRa_Node Member=Component C18 Cap
+Added Member To Class: ClassName=LoRa_Node Member=Component C20 
+Added Member To Class: ClassName=LoRa_Node Member=Component C22 1000uF
+Added Member To Class: ClassName=LoRa_Node Member=Component D3 SM2T3V3A
+Added Member To Class: ClassName=LoRa_Node Member=Component D4 SM2T3V3A
+Added Member To Class: ClassName=LoRa_Node Member=Component D6 SM2T3V3A
+Added Member To Class: ClassName=LoRa_Node Member=Component R15 Res1
+Added Member To Class: ClassName=LoRa_Node Member=Component R18 Res1
+Added Member To Class: ClassName=LoRa_Node Member=Component R19 Res1
+Added Member To Class: ClassName=LoRa_Node Member=Component R21 Res1
+Added Member To Class: ClassName=LoRa_Node Member=Component R25 Res1
+Added Member To Class: ClassName=LoRa_Node Member=Component R26 Res1
+Added Member To Class: ClassName=LoRa_Node Member=Component U5 LM324AN

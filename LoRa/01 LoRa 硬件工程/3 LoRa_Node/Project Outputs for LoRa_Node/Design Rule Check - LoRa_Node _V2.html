@@ -1,0 +1,650 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://D:\AD17\SharedDocuments\AD17\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2021/1/1</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">15:14:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc" class="file"><acronym title="D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc">D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">106</td></tr>
+</table>
+</td>
+</table><a name="ID0KOCZU1UWWUOSC50IUNTPWV4JMWZHU0KARMMEAAEMZ2LC5GMXO"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSJQBHDA2CZKPDTWRAPU4K4D20L5FAFO2GROYJHMLSRY2AG1IV5">Clearance Constraint (Gap=7mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXGUKUTOQSNIKIINXERG1SBT0UKKAHX5CWNMWZUOORDYTKUQO1FCB">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCXKAVTYFJUQZEFH2VHYBHZ4ZQN0REBSVPPWQRZNUUIFY5GWDSHTP">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1P3QS0BTPRT5OGSTY5D154FF0NCZUCYCMXSKYOJKAV2XIATTAGCL">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDR0AFSUWGHQ3DPD4UDY0AO5XDXFKICXRZGCDD0ABLVS14J0FHPYGE">Width Constraint (Min=7mil) (Max=100mil) (Preferred=50mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGAXD4AP1201WLP1E3RP3E3VEXCTY4YF1OKC0SEK122F01XGRES3E">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAJGXYOQ1NLOLPDFUZUYS1HGSHLSGHIRQNPC3ZPKHYUAEBWJW434I">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBJGVQ10OQIACPUBHB5EKGNQT1PGPCCWW2AVAKUNGJXNWERLH1VZB">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDA3N0FLSDE1WFOCN1M2LYLPA1II53ZGOMPFFXLKNQB55GVUUVU4PL">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">27</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDAP1AIXQSAGHEOU3UPLLSCLTXMMYPNU5LPM0J0MATBT4J1PZBBVN">Silk To Solder Mask (Clearance=0mil) (IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPN52ZVYCRLR4MR5QG2VH1FJ1GCYNKK0NQRWVJEHO5XI0CLKTGVDF">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">79</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKV2IXEKAOOTMPESGGFEAO3RHKFXPX4VI4SM03YORSSW4NOZJEH5">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXY5Z0J5OWB0YMVXYFXPJUJYUODNDAQKIIBM0URCC3YHP2JIZRSRM">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">106</td>
+</tr>
+</table><br><a name="IDA3N0FLSDE1WFOCN1M2LYLPA1II53ZGOMPFFXLKNQB55GVUUVU4PL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10414.136mil|Location2.X=10425.386mil|Location1.Y=7909.594mil|Location2.Y=7920.844mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10414.136mil|Location2.X=10425.386mil|Location1.Y=7909.594mil|Location2.Y=7920.844mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.482mil &lt; 10mil) Between Via (1530mil,1415mil) from Top Layer to Bottom Layer And Pad U1-42(1580.354mil,1395.315mil) on Top Layer [Top Solder] Mask Sliver [7.482mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10414.709mil|Location2.X=10425.959mil|Location1.Y=7921.188mil|Location2.Y=7932.438mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10414.709mil|Location2.X=10425.959mil|Location1.Y=7921.188mil|Location2.Y=7932.438mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.013mil &lt; 10mil) Between Via (1530mil,1415mil) from Top Layer to Bottom Layer And Pad U1-41(1580.354mil,1415mil) on Top Layer [Top Solder] Mask Sliver [1.013mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10414.136mil|Location2.X=10425.386mil|Location1.Y=7932.781mil|Location2.Y=7944.031mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10414.136mil|Location2.X=10425.386mil|Location1.Y=7932.781mil|Location2.Y=7944.031mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.486mil &lt; 10mil) Between Via (1530mil,1415mil) from Top Layer to Bottom Layer And Pad U1-40(1580.354mil,1434.685mil) on Top Layer [Top Solder] Mask Sliver [7.486mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11520.477mil|Location2.X=11531.727mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11520.477mil|Location2.X=11531.727mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-22(2630.433mil,2280mil) on Top Layer And Pad U2-21(2673.74mil,2280mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11563.784mil|Location2.X=11575.034mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11563.784mil|Location2.X=11575.034mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-20(2717.047mil,2280mil) on Top Layer And Pad U2-21(2673.74mil,2280mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11477.17mil|Location2.X=11488.42mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11477.17mil|Location2.X=11488.42mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-23(2587.126mil,2280mil) on Top Layer And Pad U2-22(2630.433mil,2280mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11521.885mil|Location2.X=11533.135mil|Location1.Y=8821.576mil|Location2.Y=8832.826mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11521.885mil|Location2.X=11533.135mil|Location1.Y=8821.576mil|Location2.Y=8832.826mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.602mil &lt; 10mil) Between Via (2670.591mil,2325mil) from Top Layer to Bottom Layer And Pad U2-22(2630.433mil,2280mil) on Top Layer [Top Solder] Mask Sliver [7.602mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11941.737mil|Location2.X=11952.987mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11941.737mil|Location2.X=11952.987mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-14(3051.693mil,2280mil) on Top Layer And Pad U2-13(3095mil,2280mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11898.43mil|Location2.X=11909.68mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11898.43mil|Location2.X=11909.68mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-15(3008.386mil,2280mil) on Top Layer And Pad U2-14(3051.693mil,2280mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11855.123mil|Location2.X=11866.373mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11855.123mil|Location2.X=11866.373mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-16(2965.079mil,2280mil) on Top Layer And Pad U2-15(3008.386mil,2280mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11811.816mil|Location2.X=11823.066mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11811.816mil|Location2.X=11823.066mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-17(2921.772mil,2280mil) on Top Layer And Pad U2-16(2965.079mil,2280mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11650.398mil|Location2.X=11661.648mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11650.398mil|Location2.X=11661.648mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-19(2760.354mil,2280mil) on Top Layer And Pad U2-18(2803.661mil,2280mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11607.091mil|Location2.X=11618.341mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11607.091mil|Location2.X=11618.341mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-20(2717.047mil,2280mil) on Top Layer And Pad U2-19(2760.354mil,2280mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11578.391mil|Location2.X=11589.641mil|Location1.Y=8749.828mil|Location2.Y=8761.078mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11578.391mil|Location2.X=11589.641mil|Location1.Y=8749.828mil|Location2.Y=8761.078mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.662mil &lt; 10mil) Between Via (2710mil,2225mil) from Top Layer to Bottom Layer And Pad U2-20(2717.047mil,2280mil) on Top Layer [Top Solder] Mask Sliver [5.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11433.863mil|Location2.X=11445.113mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11433.863mil|Location2.X=11445.113mil|Location1.Y=8752.658mil|Location2.Y=8763.908mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-24(2543.819mil,2280mil) on Top Layer And Pad U2-23(2587.126mil,2280mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11941.737mil|Location2.X=11952.987mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11941.737mil|Location2.X=11952.987mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-11(3051.693mil,1791.811mil) on Top Layer And Pad U2-12(3095mil,1791.811mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11898.43mil|Location2.X=11909.68mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11898.43mil|Location2.X=11909.68mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-10(3008.386mil,1791.811mil) on Top Layer And Pad U2-11(3051.693mil,1791.811mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11855.123mil|Location2.X=11866.373mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11855.123mil|Location2.X=11866.373mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-9(2965.079mil,1791.811mil) on Top Layer And Pad U2-10(3008.386mil,1791.811mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11811.816mil|Location2.X=11823.066mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11811.816mil|Location2.X=11823.066mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-8(2921.772mil,1791.811mil) on Top Layer And Pad U2-9(2965.079mil,1791.811mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11650.398mil|Location2.X=11661.648mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11650.398mil|Location2.X=11661.648mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-6(2760.354mil,1791.811mil) on Top Layer And Pad U2-7(2803.661mil,1791.811mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11607.091mil|Location2.X=11618.341mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11607.091mil|Location2.X=11618.341mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-5(2717.047mil,1791.811mil) on Top Layer And Pad U2-6(2760.354mil,1791.811mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11563.784mil|Location2.X=11575.034mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11563.784mil|Location2.X=11575.034mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-4(2673.74mil,1791.811mil) on Top Layer And Pad U2-5(2717.047mil,1791.811mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11520.477mil|Location2.X=11531.727mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11520.477mil|Location2.X=11531.727mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-3(2630.433mil,1791.811mil) on Top Layer And Pad U2-4(2673.74mil,1791.811mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11477.17mil|Location2.X=11488.42mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11477.17mil|Location2.X=11488.42mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-2(2587.126mil,1791.811mil) on Top Layer And Pad U2-3(2630.433mil,1791.811mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11433.863mil|Location2.X=11445.113mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11433.863mil|Location2.X=11445.113mil|Location1.Y=8264.469mil|Location2.Y=8275.719mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U2-1(2543.819mil,1791.811mil) on Top Layer And Pad U2-2(2587.126mil,1791.811mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10552.604mil|Location2.X=10563.854mil|Location1.Y=7839.473mil|Location2.Y=7850.723mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10552.604mil|Location2.X=10563.854mil|Location1.Y=7839.473mil|Location2.Y=7850.723mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.162mil &lt; 10mil) Between Via (1673.426mil,1316.574mil) from Top Layer to Bottom Layer And Via (1695mil,1350mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [8.162mil] / [Bottom Solder] Mask Sliver [8.162mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9683.391mil|Location2.X=9694.641mil|Location1.Y=8618.686mil|Location2.Y=8629.936mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9683.391mil|Location2.X=9694.641mil|Location1.Y=8618.686mil|Location2.Y=8629.936mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.378mil &lt; 10mil) Between Via (815mil,2130mil) from Top Layer to Bottom Layer And Via (815mil,2095mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [3.378mil] / [Bottom Solder] Mask Sliver [3.378mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDPN52ZVYCRLR4MR5QG2VH1FJ1GCYNKK0NQRWVJEHO5XI0CLKTGVDF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10192.441mil|Location2.X=10203.691mil|Location1.Y=7467.58mil|Location2.Y=7478.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10192.441mil|Location2.X=10203.691mil|Location1.Y=7467.58mil|Location2.Y=7478.83mil|Absolute=True">Silk To Silk Clearance Constraint: (5.855mil &lt; 10mil) Between Text "Y1" (1300mil,965mil) on Top Overlay And Arc (1410mil,885mil) on Top Overlay Silk Text to Silk Clearance [5.855mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9215.004mil|Location2.X=9226.254mil|Location1.Y=8062.113mil|Location2.Y=8073.363mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9215.004mil|Location2.X=9226.254mil|Location1.Y=8062.113mil|Location2.Y=8073.363mil|Absolute=True">Silk To Silk Clearance Constraint: (5.098mil &lt; 10mil) Between Text "C11" (341.567mil,1541.081mil) on Top Overlay And Arc (396.567mil,1554.45mil) on Top Overlay Silk Text to Silk Clearance [5.098mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9232.413mil|Location2.X=9243.663mil|Location1.Y=7940.023mil|Location2.Y=7951.273mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9232.413mil|Location2.X=9243.663mil|Location1.Y=7940.023mil|Location2.Y=7951.273mil|Absolute=True">Silk To Silk Clearance Constraint: (3.273mil &lt; 10mil) Between Text "R15" (325mil,1415mil) on Top Overlay And Arc (396.483mil,1470mil) on Top Overlay Silk Text to Silk Clearance [3.273mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9215.927mil|Location2.X=9227.177mil|Location1.Y=7976.182mil|Location2.Y=7987.432mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9215.927mil|Location2.X=9227.177mil|Location1.Y=7976.182mil|Location2.Y=7987.432mil|Absolute=True">Silk To Silk Clearance Constraint: (3.039mil &lt; 10mil) Between Text "C12" (343.517mil,1450mil) on Top Overlay And Arc (396.483mil,1470mil) on Top Overlay Silk Text to Silk Clearance [3.039mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9933.322mil|Location2.X=9944.572mil|Location1.Y=8061.917mil|Location2.Y=8073.167mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9933.322mil|Location2.X=9944.572mil|Location1.Y=8061.917mil|Location2.Y=8073.167mil|Absolute=True">Silk To Silk Clearance Constraint: (5.162mil &lt; 10mil) Between Text "C17" (1085mil,1538.517mil) on Top Overlay And Arc (1015mil,1552.967mil) on Top Overlay Silk Text to Silk Clearance [5.163mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9935.088mil|Location2.X=9946.338mil|Location1.Y=7977.037mil|Location2.Y=7988.287mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9935.088mil|Location2.X=9946.338mil|Location1.Y=7977.037mil|Location2.Y=7988.287mil|Absolute=True">Silk To Silk Clearance Constraint: (1.622mil &lt; 10mil) Between Text "C18" (1085mil,1453.517mil) on Top Overlay And Arc (1018.517mil,1468.517mil) on Top Overlay Silk Text to Silk Clearance [1.622mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10292.699mil|Location2.X=10303.949mil|Location1.Y=7564.804mil|Location2.Y=7576.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10292.699mil|Location2.X=10303.949mil|Location1.Y=7564.804mil|Location2.Y=7576.054mil|Absolute=True">Silk To Silk Clearance Constraint: (9.27mil &lt; 10mil) Between Text "C1" (1425mil,1065mil) on Top Overlay And Arc (1450mil,1020mil) on Top Overlay Silk Text to Silk Clearance [9.27mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12258.391mil|Location2.X=12269.641mil|Location1.Y=8474.936mil|Location2.Y=8486.186mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12258.391mil|Location2.X=12269.641mil|Location1.Y=8474.936mil|Location2.Y=8486.186mil|Absolute=True">Silk To Silk Clearance Constraint: (7.5mil &lt; 10mil) Between Text "C4" (3385mil,1975mil) on Top Overlay And Arc (3420mil,1930mil) on Top Overlay Silk Text to Silk Clearance [7.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10564.078mil|Location2.X=10575.328mil|Location1.Y=7559.804mil|Location2.Y=7571.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10564.078mil|Location2.X=10575.328mil|Location1.Y=7559.804mil|Location2.Y=7571.054mil|Absolute=True">Silk To Silk Clearance Constraint: (9.274mil &lt; 10mil) Between Text "C5" (1670mil,1060mil) on Top Overlay And Arc (1670mil,1015mil) on Top Overlay Silk Text to Silk Clearance [9.274mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12278.31mil|Location2.X=12289.56mil|Location1.Y=8372.15mil|Location2.Y=8383.4mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12278.31mil|Location2.X=12289.56mil|Location1.Y=8372.15mil|Location2.Y=8383.4mil|Absolute=True">Silk To Silk Clearance Constraint: (5.462mil &lt; 10mil) Between Text "C6" (3410.748mil,1870mil) on Top Overlay And Arc (3435mil,1830mil) on Top Overlay Silk Text to Silk Clearance [5.462mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10641.833mil|Location2.X=10653.083mil|Location1.Y=7552.399mil|Location2.Y=7563.649mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10641.833mil|Location2.X=10653.083mil|Location1.Y=7552.399mil|Location2.Y=7563.649mil|Absolute=True">Silk To Silk Clearance Constraint: (2.808mil &lt; 10mil) Between Text "C7" (1771.89mil,1050mil) on Top Overlay And Arc (1801.89mil,1010mil) on Top Overlay Silk Text to Silk Clearance [2.808mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10238.424mil|Location2.X=10249.674mil|Location1.Y=7656.186mil|Location2.Y=7667.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10238.424mil|Location2.X=10249.674mil|Location1.Y=7656.186mil|Location2.Y=7667.436mil|Absolute=True">Silk To Silk Clearance Constraint: (5.082mil &lt; 10mil) Between Text "C8" (1340mil,1140mil) on Top Overlay And Arc (1420mil,1150mil) on Top Overlay Silk Text to Silk Clearance [5.082mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10039.846mil|Location2.X=10051.096mil|Location1.Y=8634.919mil|Location2.Y=8646.169mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10039.846mil|Location2.X=10051.096mil|Location1.Y=8634.919mil|Location2.Y=8646.169mil|Absolute=True">Silk To Silk Clearance Constraint: (7.707mil &lt; 10mil) Between Text "C10" (1170mil,2135mil) on Top Overlay And Arc (1200mil,2090mil) on Top Overlay Silk Text to Silk Clearance [7.707mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11222.89mil|Location2.X=11234.14mil|Location1.Y=8612.186mil|Location2.Y=8623.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11222.89mil|Location2.X=11234.14mil|Location1.Y=8612.186mil|Location2.Y=8623.436mil|Absolute=True">Silk To Silk Clearance Constraint: (5mil &lt; 10mil) Between Text "C2" (2355mil,2110mil) on Top Overlay And Arc (2380mil,2070mil) on Top Overlay Silk Text to Silk Clearance [5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11219.846mil|Location2.X=11231.096mil|Location1.Y=8719.919mil|Location2.Y=8731.169mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11219.846mil|Location2.X=11231.096mil|Location1.Y=8719.919mil|Location2.Y=8731.169mil|Absolute=True">Silk To Silk Clearance Constraint: (7.707mil &lt; 10mil) Between Text "C3" (2350mil,2220mil) on Top Overlay And Arc (2380mil,2175mil) on Top Overlay Silk Text to Silk Clearance [7.707mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9841.548mil|Location2.X=9852.798mil|Location1.Y=7367.743mil|Location2.Y=7378.993mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9841.548mil|Location2.X=9852.798mil|Location1.Y=7367.743mil|Location2.Y=7378.993mil|Absolute=True">Silk To Silk Clearance Constraint: (9.061mil &lt; 10mil) Between Text "C15" (966.142mil,826.102mil) on Top Overlay And Arc (1025mil,865mil) on Top Overlay Silk Text to Silk Clearance [9.061mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9841.886mil|Location2.X=9853.136mil|Location1.Y=7452.726mil|Location2.Y=7463.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9841.886mil|Location2.X=9853.136mil|Location1.Y=7452.726mil|Location2.Y=7463.976mil|Absolute=True">Silk To Silk Clearance Constraint: (8.388mil &lt; 10mil) Between Text "C16" (966.816mil,911.102mil) on Top Overlay And Arc (1025mil,950mil) on Top Overlay Silk Text to Silk Clearance [8.388mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10194.227mil|Location2.X=10205.477mil|Location1.Y=7469.239mil|Location2.Y=7480.489mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10194.227mil|Location2.X=10205.477mil|Location1.Y=7469.239mil|Location2.Y=7480.489mil|Absolute=True">Silk To Silk Clearance Constraint: (7.317mil &lt; 10mil) Between Text "Y1" (1300mil,965mil) on Top Overlay And Track (1335mil,960mil)(1685mil,960mil) on Top Overlay Silk Text to Silk Clearance [7.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10241.782mil|Location2.X=10253.032mil|Location1.Y=7927.669mil|Location2.Y=7938.919mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10241.782mil|Location2.X=10253.032mil|Location1.Y=7927.669mil|Location2.Y=7938.919mil|Absolute=True">Silk To Silk Clearance Constraint: (2.665mil &lt; 10mil) Between Text "R2" (1344.567mil,1421.483mil) on Top Overlay And Track (1377.48mil,1402.441mil)(1377.48mil,1457.559mil) on Top Overlay Silk Text to Silk Clearance [2.665mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9232.227mil|Location2.X=9243.477mil|Location1.Y=7939.558mil|Location2.Y=7950.808mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9232.227mil|Location2.X=9243.477mil|Location1.Y=7939.558mil|Location2.Y=7950.808mil|Absolute=True">Silk To Silk Clearance Constraint: (2.273mil &lt; 10mil) Between Text "R15" (325mil,1415mil) on Top Overlay And Track (366.483mil,1440mil)(401.483mil,1440mil) on Top Overlay Silk Text to Silk Clearance [2.273mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9619.533mil|Location2.X=9630.783mil|Location1.Y=8043.67mil|Location2.Y=8054.92mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9619.533mil|Location2.X=9630.783mil|Location1.Y=8043.67mil|Location2.Y=8054.92mil|Absolute=True">Silk To Silk Clearance Constraint: (7.067mil &lt; 10mil) Between Text "D6" (751.142mil,1543.517mil) on Top Overlay And Track (742.874mil,1528.95mil)(860.984mil,1528.95mil) on Top Overlay Silk Text to Silk Clearance [7.067mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9408.391mil|Location2.X=9419.641mil|Location1.Y=8043.67mil|Location2.Y=8054.92mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9408.391mil|Location2.X=9419.641mil|Location1.Y=8043.67mil|Location2.Y=8054.92mil|Absolute=True">Silk To Silk Clearance Constraint: (7.067mil &lt; 10mil) Between Text "D3" (540mil,1543.517mil) on Top Overlay And Track (538.307mil,1528.95mil)(656.417mil,1528.95mil) on Top Overlay Silk Text to Silk Clearance [7.067mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10295.89mil|Location2.X=10307.14mil|Location1.Y=7565.436mil|Location2.Y=7576.686mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10295.89mil|Location2.X=10307.14mil|Location1.Y=7565.436mil|Location2.Y=7576.686mil|Absolute=True">Silk To Silk Clearance Constraint: (6.5mil &lt; 10mil) Between Text "C1" (1425mil,1065mil) on Top Overlay And Track (1420mil,1050mil)(1455mil,1050mil) on Top Overlay Silk Text to Silk Clearance [6.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12258.391mil|Location2.X=12269.641mil|Location1.Y=8475.436mil|Location2.Y=8486.686mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12258.391mil|Location2.X=12269.641mil|Location1.Y=8475.436mil|Location2.Y=8486.686mil|Absolute=True">Silk To Silk Clearance Constraint: (6.5mil &lt; 10mil) Between Text "C4" (3385mil,1975mil) on Top Overlay And Track (3390mil,1960mil)(3425mil,1960mil) on Top Overlay Silk Text to Silk Clearance [6.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12286.636mil|Location2.X=12297.886mil|Location1.Y=8396.934mil|Location2.Y=8408.184mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12286.636mil|Location2.X=12297.886mil|Location1.Y=8396.934mil|Location2.Y=8408.184mil|Absolute=True">Silk To Silk Clearance Constraint: (6.505mil &lt; 10mil) Between Text "C6" (3410.748mil,1870mil) on Top Overlay And Track (3390mil,1900mil)(3425mil,1900mil) on Top Overlay Silk Text to Silk Clearance [6.505mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10540.89mil|Location2.X=10552.14mil|Location1.Y=7560.436mil|Location2.Y=7571.686mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10540.89mil|Location2.X=10552.14mil|Location1.Y=7560.436mil|Location2.Y=7571.686mil|Absolute=True">Silk To Silk Clearance Constraint: (6.5mil &lt; 10mil) Between Text "C5" (1670mil,1060mil) on Top Overlay And Track (1665mil,1045mil)(1700mil,1045mil) on Top Overlay Silk Text to Silk Clearance [6.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12281.638mil|Location2.X=12292.888mil|Location1.Y=8372.936mil|Location2.Y=8384.186mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12281.638mil|Location2.X=12292.888mil|Location1.Y=8372.936mil|Location2.Y=8384.186mil|Absolute=True">Silk To Silk Clearance Constraint: (1.5mil &lt; 10mil) Between Text "C6" (3410.748mil,1870mil) on Top Overlay And Track (3405mil,1860mil)(3440mil,1860mil) on Top Overlay Silk Text to Silk Clearance [1.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10642.78mil|Location2.X=10654.03mil|Location1.Y=7552.936mil|Location2.Y=7564.186mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10642.78mil|Location2.X=10654.03mil|Location1.Y=7552.936mil|Location2.Y=7564.186mil|Absolute=True">Silk To Silk Clearance Constraint: (1.5mil &lt; 10mil) Between Text "C7" (1771.89mil,1050mil) on Top Overlay And Track (1771.89mil,1040mil)(1806.89mil,1040mil) on Top Overlay Silk Text to Silk Clearance [1.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10795.89mil|Location2.X=10807.14mil|Location1.Y=8180.436mil|Location2.Y=8191.686mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10795.89mil|Location2.X=10807.14mil|Location1.Y=8180.436mil|Location2.Y=8191.686mil|Absolute=True">Silk To Silk Clearance Constraint: (6.5mil &lt; 10mil) Between Text "C9" (1925mil,1680mil) on Top Overlay And Track (1915mil,1665mil)(1950mil,1665mil) on Top Overlay Silk Text to Silk Clearance [6.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10040.89mil|Location2.X=10052.14mil|Location1.Y=8635.436mil|Location2.Y=8646.686mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10040.89mil|Location2.X=10052.14mil|Location1.Y=8635.436mil|Location2.Y=8646.686mil|Absolute=True">Silk To Silk Clearance Constraint: (6.5mil &lt; 10mil) Between Text "C10" (1170mil,2135mil) on Top Overlay And Track (1170mil,2120mil)(1205mil,2120mil) on Top Overlay Silk Text to Silk Clearance [6.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10053.824mil|Location2.X=10065.074mil|Location1.Y=8559.434mil|Location2.Y=8570.684mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10053.824mil|Location2.X=10065.074mil|Location1.Y=8559.434mil|Location2.Y=8570.684mil|Absolute=True">Silk To Silk Clearance Constraint: (1.505mil &lt; 10mil) Between Text "R4" (1185.433mil,2035mil) on Top Overlay And Track (1170mil,2060mil)(1205mil,2060mil) on Top Overlay Silk Text to Silk Clearance [1.505mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11225.89mil|Location2.X=11237.14mil|Location1.Y=8612.936mil|Location2.Y=8624.186mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11225.89mil|Location2.X=11237.14mil|Location1.Y=8612.936mil|Location2.Y=8624.186mil|Absolute=True">Silk To Silk Clearance Constraint: (1.5mil &lt; 10mil) Between Text "C2" (2355mil,2110mil) on Top Overlay And Track (2350mil,2100mil)(2385mil,2100mil) on Top Overlay Silk Text to Silk Clearance [1.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11220.89mil|Location2.X=11232.14mil|Location1.Y=8720.436mil|Location2.Y=8731.686mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11220.89mil|Location2.X=11232.14mil|Location1.Y=8720.436mil|Location2.Y=8731.686mil|Absolute=True">Silk To Silk Clearance Constraint: (6.5mil &lt; 10mil) Between Text "C3" (2350mil,2220mil) on Top Overlay And Track (2350mil,2205mil)(2385mil,2205mil) on Top Overlay Silk Text to Silk Clearance [6.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10231.138mil|Location2.X=10242.388mil|Location1.Y=7816.186mil|Location2.Y=7827.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10231.138mil|Location2.X=10242.388mil|Location1.Y=7816.186mil|Location2.Y=7827.436mil|Absolute=True">Silk To Silk Clearance Constraint: (0.506mil &lt; 10mil) Between Text "D1" (1340mil,1310mil) on Top Overlay And Track (1368mil,1275mil)(1368mil,1335mil) on Top Overlay Silk Text to Silk Clearance [0.506mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10230.233mil|Location2.X=10241.483mil|Location1.Y=7835.322mil|Location2.Y=7846.572mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10230.233mil|Location2.X=10241.483mil|Location1.Y=7835.322mil|Location2.Y=7846.572mil|Absolute=True">Silk To Silk Clearance Constraint: (7.007mil &lt; 10mil) Between Text "D1" (1340mil,1310mil) on Top Overlay And Track (1368mil,1335mil)(1418mil,1335mil) on Top Overlay Silk Text to Silk Clearance [7.007mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12098.391mil|Location2.X=12109.641mil|Location1.Y=8480.436mil|Location2.Y=8491.686mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12098.391mil|Location2.X=12109.641mil|Location1.Y=8480.436mil|Location2.Y=8491.686mil|Absolute=True">Silk To Silk Clearance Constraint: (6.5mil &lt; 10mil) Between Text "L1" (3230mil,1980mil) on Top Overlay And Track (3215mil,1965mil)(3265mil,1965mil) on Top Overlay Silk Text to Silk Clearance [6.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10433.391mil|Location2.X=10444.641mil|Location1.Y=8614.405mil|Location2.Y=8625.655mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10433.391mil|Location2.X=10444.641mil|Location1.Y=8614.405mil|Location2.Y=8625.655mil|Absolute=True">Silk To Silk Clearance Constraint: (8.563mil &lt; 10mil) Between Text "P3" (1565mil,2115mil) on Top Overlay And Track (1530mil,2100mil)(1930mil,2100mil) on Top Overlay Silk Text to Silk Clearance [8.563mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10808.391mil|Location2.X=10819.641mil|Location1.Y=8836.905mil|Location2.Y=8848.155mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10808.391mil|Location2.X=10819.641mil|Location1.Y=8836.905mil|Location2.Y=8848.155mil|Absolute=True">Silk To Silk Clearance Constraint: (3.563mil &lt; 10mil) Between Text "P6" (1940mil,2335mil) on Top Overlay And Track (1905mil,2325mil)(2305mil,2325mil) on Top Overlay Silk Text to Silk Clearance [3.563mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10242.216mil|Location2.X=10253.466mil|Location1.Y=7731.186mil|Location2.Y=7742.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10242.216mil|Location2.X=10253.466mil|Location1.Y=7731.186mil|Location2.Y=7742.436mil|Absolute=True">Silk To Silk Clearance Constraint: (2.663mil &lt; 10mil) Between Text "R1" (1350mil,1225mil) on Top Overlay And Track (1377.913mil,1202.441mil)(1377.913mil,1257.559mil) on Top Overlay Silk Text to Silk Clearance [2.663mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10398.391mil|Location2.X=10409.641mil|Location1.Y=7630.093mil|Location2.Y=7641.343mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10398.391mil|Location2.X=10409.641mil|Location1.Y=7630.093mil|Location2.Y=7641.343mil|Absolute=True">Silk To Silk Clearance Constraint: (7.185mil &lt; 10mil) Between Text "R3" (1530mil,1130mil) on Top Overlay And Track (1517.913mil,1117.559mil)(1632.087mil,1117.559mil) on Top Overlay Silk Text to Silk Clearance [7.185mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10053.824mil|Location2.X=10065.074mil|Location1.Y=8535.094mil|Location2.Y=8546.344mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10053.824mil|Location2.X=10065.074mil|Location1.Y=8535.094mil|Location2.Y=8546.344mil|Absolute=True">Silk To Silk Clearance Constraint: (7.185mil &lt; 10mil) Between Text "R4" (1185.433mil,2035mil) on Top Overlay And Track (1172.913mil,2022.559mil)(1287.087mil,2022.559mil) on Top Overlay Silk Text to Silk Clearance [7.185mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9266.565mil|Location2.X=9277.815mil|Location1.Y=8781.186mil|Location2.Y=8792.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9266.565mil|Location2.X=9277.815mil|Location1.Y=8781.186mil|Location2.Y=8792.436mil|Absolute=True">Silk To Silk Clearance Constraint: (2.662mil &lt; 10mil) Between Text "R6" (417mil,2275mil) on Top Overlay And Track (394.087mil,2272.441mil)(394.087mil,2327.559mil) on Top Overlay Silk Text to Silk Clearance [2.662mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9140.597mil|Location2.X=9151.847mil|Location1.Y=8781.186mil|Location2.Y=8792.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9140.597mil|Location2.X=9151.847mil|Location1.Y=8781.186mil|Location2.Y=8792.436mil|Absolute=True">Silk To Silk Clearance Constraint: (9.901mil &lt; 10mil) Between Text "R5" (264.756mil,2275mil) on Top Overlay And Track (279.913mil,2272.441mil)(279.913mil,2327.559mil) on Top Overlay Silk Text to Silk Clearance [9.901mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9266.558mil|Location2.X=9277.808mil|Location1.Y=8779.946mil|Location2.Y=8791.196mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9266.558mil|Location2.X=9277.808mil|Location1.Y=8779.946mil|Location2.Y=8791.196mil|Absolute=True">Silk To Silk Clearance Constraint: (3.065mil &lt; 10mil) Between Text "R6" (417mil,2275mil) on Top Overlay And Track (279.913mil,2272.441mil)(394.087mil,2272.441mil) on Top Overlay Silk Text to Silk Clearance [3.065mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9289.219mil|Location2.X=9300.469mil|Location1.Y=8781.186mil|Location2.Y=8792.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9289.219mil|Location2.X=9300.469mil|Location1.Y=8781.186mil|Location2.Y=8792.436mil|Absolute=True">Silk To Silk Clearance Constraint: (2.657mil &lt; 10mil) Between Text "R6" (417mil,2275mil) on Top Overlay And Track (424.913mil,2272.441mil)(424.913mil,2327.559mil) on Top Overlay Silk Text to Silk Clearance [2.657mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9289.225mil|Location2.X=9300.475mil|Location1.Y=8779.946mil|Location2.Y=8791.196mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9289.225mil|Location2.X=9300.475mil|Location1.Y=8779.946mil|Location2.Y=8791.196mil|Absolute=True">Silk To Silk Clearance Constraint: (3.061mil &lt; 10mil) Between Text "R6" (417mil,2275mil) on Top Overlay And Track (424.913mil,2272.441mil)(539.087mil,2272.441mil) on Top Overlay Silk Text to Silk Clearance [3.061mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9478.727mil|Location2.X=9486.394mil|Location1.Y=8782.978mil|Location2.Y=8790.644mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9478.727mil|Location2.X=9486.394mil|Location1.Y=8782.978mil|Location2.Y=8790.644mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "R7" (607.433mil,2275mil) on Top Overlay And Track (609.913mil,2272.441mil)(609.913mil,2327.559mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9478.766mil|Location2.X=9486.433mil|Location1.Y=8781.79mil|Location2.Y=8789.457mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9478.766mil|Location2.X=9486.433mil|Location1.Y=8781.79mil|Location2.Y=8789.457mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "R7" (607.433mil,2275mil) on Top Overlay And Track (609.913mil,2272.441mil)(724.087mil,2272.441mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9671.936mil|Location2.X=9683.186mil|Location1.Y=8781.186mil|Location2.Y=8792.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9671.936mil|Location2.X=9683.186mil|Location1.Y=8781.186mil|Location2.Y=8792.436mil|Absolute=True">Silk To Silk Clearance Constraint: (7.224mil &lt; 10mil) Between Text "R8" (797.433mil,2275mil) on Top Overlay And Track (809.913mil,2272.441mil)(809.913mil,2327.559mil) on Top Overlay Silk Text to Silk Clearance [7.224mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9671.938mil|Location2.X=9683.188mil|Location1.Y=8779.932mil|Location2.Y=8791.182mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9671.938mil|Location2.X=9683.188mil|Location1.Y=8779.932mil|Location2.Y=8791.182mil|Absolute=True">Silk To Silk Clearance Constraint: (7.484mil &lt; 10mil) Between Text "R8" (797.433mil,2275mil) on Top Overlay And Track (809.913mil,2272.441mil)(924.087mil,2272.441mil) on Top Overlay Silk Text to Silk Clearance [7.484mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9146.503mil|Location2.X=9157.753mil|Location1.Y=8311.186mil|Location2.Y=8322.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9146.503mil|Location2.X=9157.753mil|Location1.Y=8311.186mil|Location2.Y=8322.436mil|Absolute=True">Silk To Silk Clearance Constraint: (8.09mil &lt; 10mil) Between Text "R9" (271.567mil,1805mil) on Top Overlay And Track (284.913mil,1802.441mil)(284.913mil,1857.559mil) on Top Overlay Silk Text to Silk Clearance [8.09mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9146.505mil|Location2.X=9157.755mil|Location1.Y=8309.931mil|Location2.Y=8321.181mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9146.505mil|Location2.X=9157.755mil|Location1.Y=8309.931mil|Location2.Y=8321.181mil|Absolute=True">Silk To Silk Clearance Constraint: (8.333mil &lt; 10mil) Between Text "R9" (271.567mil,1805mil) on Top Overlay And Track (284.913mil,1802.441mil)(399.087mil,1802.441mil) on Top Overlay Silk Text to Silk Clearance [8.333mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9302.219mil|Location2.X=9313.469mil|Location1.Y=8316.186mil|Location2.Y=8327.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9302.219mil|Location2.X=9313.469mil|Location1.Y=8316.186mil|Location2.Y=8327.436mil|Absolute=True">Silk To Silk Clearance Constraint: (2.657mil &lt; 10mil) Between Text "R10" (430mil,1810mil) on Top Overlay And Track (437.913mil,1802.441mil)(437.913mil,1857.559mil) on Top Overlay Silk Text to Silk Clearance [2.657mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9301.092mil|Location2.X=9312.342mil|Location1.Y=8358.534mil|Location2.Y=8369.784mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9301.092mil|Location2.X=9312.342mil|Location1.Y=8358.534mil|Location2.Y=8369.784mil|Absolute=True">Silk To Silk Clearance Constraint: (9.228mil &lt; 10mil) Between Text "R10" (430mil,1810mil) on Top Overlay And Track (437.913mil,1857.559mil)(552.087mil,1857.559mil) on Top Overlay Silk Text to Silk Clearance [9.228mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9302.255mil|Location2.X=9313.505mil|Location1.Y=8312.495mil|Location2.Y=8323.745mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9302.255mil|Location2.X=9313.505mil|Location1.Y=8312.495mil|Location2.Y=8323.745mil|Absolute=True">Silk To Silk Clearance Constraint: (5.687mil &lt; 10mil) Between Text "R10" (430mil,1810mil) on Top Overlay And Track (437.913mil,1802.441mil)(552.087mil,1802.441mil) on Top Overlay Silk Text to Silk Clearance [5.687mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9478.219mil|Location2.X=9489.469mil|Location1.Y=8321.186mil|Location2.Y=8332.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9478.219mil|Location2.X=9489.469mil|Location1.Y=8321.186mil|Location2.Y=8332.436mil|Absolute=True">Silk To Silk Clearance Constraint: (4.657mil &lt; 10mil) Between Text "R11" (605mil,1815mil) on Top Overlay And Track (614.913mil,1802.441mil)(614.913mil,1857.559mil) on Top Overlay Silk Text to Silk Clearance [4.657mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9478.257mil|Location2.X=9489.507mil|Location1.Y=8358.619mil|Location2.Y=8369.869mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9478.257mil|Location2.X=9489.507mil|Location1.Y=8358.619mil|Location2.Y=8369.869mil|Absolute=True">Silk To Silk Clearance Constraint: (8.874mil &lt; 10mil) Between Text "R11" (605mil,1815mil) on Top Overlay And Track (614.913mil,1857.559mil)(729.087mil,1857.559mil) on Top Overlay Silk Text to Silk Clearance [8.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9671.719mil|Location2.X=9682.969mil|Location1.Y=8312.669mil|Location2.Y=8323.919mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9671.719mil|Location2.X=9682.969mil|Location1.Y=8312.669mil|Location2.Y=8323.919mil|Absolute=True">Silk To Silk Clearance Constraint: (7.657mil &lt; 10mil) Between Text "R12" (797mil,1806.483mil) on Top Overlay And Track (809.913mil,1802.441mil)(809.913mil,1857.559mil) on Top Overlay Silk Text to Silk Clearance [7.657mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9671.725mil|Location2.X=9682.975mil|Location1.Y=8310.686mil|Location2.Y=8321.936mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9671.725mil|Location2.X=9682.975mil|Location1.Y=8310.686mil|Location2.Y=8321.936mil|Absolute=True">Silk To Silk Clearance Constraint: (8.275mil &lt; 10mil) Between Text "R12" (797mil,1806.483mil) on Top Overlay And Track (809.913mil,1802.441mil)(924.087mil,1802.441mil) on Top Overlay Silk Text to Silk Clearance [8.275mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9236.996mil|Location2.X=9248.246mil|Location1.Y=7603.682mil|Location2.Y=7614.932mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9236.996mil|Location2.X=9248.246mil|Location1.Y=7603.682mil|Location2.Y=7614.932mil|Absolute=True">Silk To Silk Clearance Constraint: (2.237mil &lt; 10mil) Between Text "R20" (325mil,1085mil) on Top Overlay And Track (372.48mil,1062.441mil)(372.48mil,1117.559mil) on Top Overlay Silk Text to Silk Clearance [2.237mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9809.162mil|Location2.X=9820.412mil|Location1.Y=7611.186mil|Location2.Y=7622.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9809.162mil|Location2.X=9820.412mil|Location1.Y=7611.186mil|Location2.Y=7622.436mil|Absolute=True">Silk To Silk Clearance Constraint: (6.566mil &lt; 10mil) Between Text "R21" (900mil,1105mil) on Top Overlay And Track (946.811mil,1087.441mil)(946.811mil,1142.559mil) on Top Overlay Silk Text to Silk Clearance [6.566mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9235.199mil|Location2.X=9246.449mil|Location1.Y=7922.63mil|Location2.Y=7933.88mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9235.199mil|Location2.X=9246.449mil|Location1.Y=7922.63mil|Location2.Y=7933.88mil|Absolute=True">Silk To Silk Clearance Constraint: (3.895mil &lt; 10mil) Between Text "R15" (325mil,1415mil) on Top Overlay And Track (371.378mil,1415.329mil)(485.552mil,1415.329mil) on Top Overlay Silk Text to Silk Clearance [3.895mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9235.199mil|Location2.X=9246.449mil|Location1.Y=7922.63mil|Location2.Y=7933.88mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9235.199mil|Location2.X=9246.449mil|Location1.Y=7922.63mil|Location2.Y=7933.88mil|Absolute=True">Silk To Silk Clearance Constraint: (3.895mil &lt; 10mil) Between Text "R15" (325mil,1415mil) on Top Overlay And Track (371.378mil,1360.211mil)(371.378mil,1415.329mil) on Top Overlay Silk Text to Silk Clearance [3.895mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9240.038mil|Location2.X=9247.705mil|Location1.Y=7537.973mil|Location2.Y=7545.64mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9240.038mil|Location2.X=9247.705mil|Location1.Y=7537.973mil|Location2.Y=7545.64mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "R16" (330mil,1015mil) on Top Overlay And Track (372.48mil,992.441mil)(372.48mil,1047.559mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9812.18mil|Location2.X=9823.43mil|Location1.Y=7523.655mil|Location2.Y=7534.905mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9812.18mil|Location2.X=9823.43mil|Location1.Y=7523.655mil|Location2.Y=7534.905mil|Absolute=True">Silk To Silk Clearance Constraint: (2.736mil &lt; 10mil) Between Text "R17" (902.433mil,1005mil) on Top Overlay And Track (947.913mil,1017.441mil)(1062.087mil,1017.441mil) on Top Overlay Silk Text to Silk Clearance [2.736mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9812.18mil|Location2.X=9823.43mil|Location1.Y=7526.181mil|Location2.Y=7537.431mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9812.18mil|Location2.X=9823.43mil|Location1.Y=7526.181mil|Location2.Y=7537.431mil|Absolute=True">Silk To Silk Clearance Constraint: (2.736mil &lt; 10mil) Between Text "R17" (902.433mil,1005mil) on Top Overlay And Track (947.913mil,1017.441mil)(947.913mil,1072.559mil) on Top Overlay Silk Text to Silk Clearance [2.736mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9807.912mil|Location2.X=9819.162mil|Location1.Y=7893.682mil|Location2.Y=7904.932mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9807.912mil|Location2.X=9819.162mil|Location1.Y=7893.682mil|Location2.Y=7904.932mil|Absolute=True">Silk To Silk Clearance Constraint: (9.067mil &lt; 10mil) Between Text "R18" (895mil,1375mil) on Top Overlay And Track (946.811mil,1360.211mil)(946.811mil,1415.329mil) on Top Overlay Silk Text to Silk Clearance [9.067mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9235.195mil|Location2.X=9246.445mil|Location1.Y=7818.685mil|Location2.Y=7829.935mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9235.195mil|Location2.X=9246.445mil|Location1.Y=7818.685mil|Location2.Y=7829.935mil|Absolute=True">Silk To Silk Clearance Constraint: (3.634mil &lt; 10mil) Between Text "R19" (325mil,1310mil) on Top Overlay And Track (371.378mil,1290.211mil)(371.378mil,1345.329mil) on Top Overlay Silk Text to Silk Clearance [3.634mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9809.162mil|Location2.X=9820.412mil|Location1.Y=7821.186mil|Location2.Y=7832.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9809.162mil|Location2.X=9820.412mil|Location1.Y=7821.186mil|Location2.Y=7832.436mil|Absolute=True">Silk To Silk Clearance Constraint: (6.567mil &lt; 10mil) Between Text "R22" (895mil,1315mil) on Top Overlay And Track (946.811mil,1295.211mil)(946.811mil,1350.329mil) on Top Overlay Silk Text to Silk Clearance [6.567mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9236.445mil|Location2.X=9247.695mil|Location1.Y=7758.682mil|Location2.Y=7769.932mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9236.445mil|Location2.X=9247.695mil|Location1.Y=7758.682mil|Location2.Y=7769.932mil|Absolute=True">Silk To Silk Clearance Constraint: (1.134mil &lt; 10mil) Between Text "R23" (325mil,1240mil) on Top Overlay And Track (371.378mil,1220.211mil)(371.378mil,1275.329mil) on Top Overlay Silk Text to Silk Clearance [1.134mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9236.996mil|Location2.X=9248.246mil|Location1.Y=7668.684mil|Location2.Y=7679.934mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9236.996mil|Location2.X=9248.246mil|Location1.Y=7668.684mil|Location2.Y=7679.934mil|Absolute=True">Silk To Silk Clearance Constraint: (2.237mil &lt; 10mil) Between Text "R24" (325mil,1155mil) on Top Overlay And Track (372.48mil,1132.441mil)(372.48mil,1187.559mil) on Top Overlay Silk Text to Silk Clearance [2.237mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9811.662mil|Location2.X=9822.912mil|Location1.Y=7696.181mil|Location2.Y=7707.431mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9811.662mil|Location2.X=9822.912mil|Location1.Y=7696.181mil|Location2.Y=7707.431mil|Absolute=True">Silk To Silk Clearance Constraint: (1.567mil &lt; 10mil) Between Text "R25" (900mil,1175mil) on Top Overlay And Track (946.811mil,1152.441mil)(946.811mil,1207.559mil) on Top Overlay Silk Text to Silk Clearance [1.567mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9811.662mil|Location2.X=9822.912mil|Location1.Y=7771.181mil|Location2.Y=7782.431mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9811.662mil|Location2.X=9822.912mil|Location1.Y=7771.181mil|Location2.Y=7782.431mil|Absolute=True">Silk To Silk Clearance Constraint: (1.567mil &lt; 10mil) Between Text "R26" (900mil,1250mil) on Top Overlay And Track (946.811mil,1230.211mil)(946.811mil,1285.329mil) on Top Overlay Silk Text to Silk Clearance [1.567mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10480.188mil|Location2.X=10491.438mil|Location1.Y=8029.126mil|Location2.Y=8040.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10480.188mil|Location2.X=10491.438mil|Location1.Y=8029.126mil|Location2.Y=8040.376mil|Absolute=True">Silk To Silk Clearance Constraint: (7.543mil &lt; 10mil) Between Text "U1" (1587.834mil,1527.795mil) on Top Overlay And Track (1616.677mil,1516.972mil)(1646.677mil,1516.972mil) on Top Overlay Silk Text to Silk Clearance [7.543mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10480.188mil|Location2.X=10491.438mil|Location1.Y=8029.126mil|Location2.Y=8040.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10480.188mil|Location2.X=10491.438mil|Location1.Y=8029.126mil|Location2.Y=8040.376mil|Absolute=True">Silk To Silk Clearance Constraint: (7.543mil &lt; 10mil) Between Text "U1" (1587.834mil,1527.795mil) on Top Overlay And Track (1616.677mil,1254.972mil)(1616.677mil,1516.972mil) on Top Overlay Silk Text to Silk Clearance [7.543mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10033.391mil|Location2.X=10044.641mil|Location1.Y=7284.76mil|Location2.Y=7296.01mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10033.391mil|Location2.X=10044.641mil|Location1.Y=7284.76mil|Location2.Y=7296.01mil|Absolute=True">Silk To Silk Clearance Constraint: (7.853mil &lt; 10mil) Between Text "K1" (1165mil,785mil) on Top Overlay And Track (1085mil,770.71mil)(1485mil,770.71mil) on Top Overlay Silk Text to Silk Clearance [7.853mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9352.724mil|Location2.X=9360.391mil|Location1.Y=7430.478mil|Location2.Y=7438.144mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9352.724mil|Location2.X=9360.391mil|Location1.Y=7430.478mil|Location2.Y=7438.144mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "D4" (499.253mil,916.102mil) on Top Overlay And Text "C14" (465.831mil,928.898mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9812.743mil|Location2.X=9823.993mil|Location1.Y=7454.776mil|Location2.Y=7466.026mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9812.743mil|Location2.X=9823.993mil|Location1.Y=7454.776mil|Location2.Y=7466.026mil|Absolute=True">Silk To Silk Clearance Constraint: (9.937mil &lt; 10mil) Between Text "D5" (921.889mil,963.898mil) on Top Overlay And Text "C16" (966.816mil,911.102mil) on Top Overlay Silk Text to Silk Clearance [9.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10213.389mil|Location2.X=10224.639mil|Location1.Y=7812.434mil|Location2.Y=7823.684mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\AD17\AD20_Project\LoRa_Node\LoRa_Node _V2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10213.389mil|Location2.X=10224.639mil|Location1.Y=7812.434mil|Location2.Y=7823.684mil|Absolute=True">Silk To Silk Clearance Constraint: (2.504mil &lt; 10mil) Between Text "+" (1340mil,1290mil) on Top Overlay And Text "D1" (1340mil,1310mil) on Top Overlay Silk Text to Silk Clearance [2.504mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
